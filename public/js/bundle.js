@@ -1,1 +1,1 @@
-import o from"./modules/m.mjs";console.log(o);console.log("hey");
+import o from"./modules/m.mjs";console.log(o);function e(){return 5}console.log("hey");export{e as pooLongMuahhahahaah};

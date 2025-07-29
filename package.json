@@ -3,29 +3,30 @@
     "dependencies": {
         "copyfiles": "^2.4.1",
         "eslint": "^9.32.0",
-        "sass-embedded": "^1.89.2"
+        "sass-embedded": "^1.89.2",
+        "terser": "^5.43.1"
     },
     "//scripts": {
         "scss-*": "Will embed source maps into the .css file to avoid a Sass source map removal detection bug. Commands fail if .sass files are used.",
         "scss-compile": "Compile all .scss files (does so even if certain files are not touched). Maybe --update will allow this to be error-free soon: https://github.com/sass/sass/issues/4105",
         "asset:generate-pictures": "Automatically generate downscaled DPI resolution images and link them to where they are used in the HTML. Might be better suited for Webpack.",
         "asset:*": "Detect HTML and asset file creation/update/removal, and reflect the changes in ./public/. Used for asset filepath intelli-sense within /src/ SCSS and JS files.",
-        "js:minify": "Compress and mangle JS code. Implicitly uses terser's --toplevel and strict mode due to combination of --module with --compress | --mangle.",
-        "dev:watch": "Runs both constituent commands in parallel thanks to the bash background operator, standard on MacOS, Linux, and Windows.",
-        "browser:serve": "In parallel, watch for /src/ changes, output changes to /public/, and provide a local webserver that refreshes the browser page when new output occurs."
+        "js:minify": "Compress and mangle JS code. Implicitly uses terser's --toplevel (mangle non-global variable names) and strict mode (??) due to combination of --module with --compress (-c) | --mangle (-m).",
+        "dev:watch": "Runs both constituent commands in parallel thanks to the bash background operator, standard on MacOS, Linux, and Windows 11.",
+        "browser:serve": "In parallel, watch for /src/ changes, output changes to /public/, and provide a local webserver that refreshes the browser page when new output occurs.",
+        "js:build-single": "Lint, minify, and generate source maps for a single JS file."
     },
     "scripts": {
-        "scss-watch": "sass --watch --no-indented --embed-source-map src/scss:public/css",
-        "scss-compile": "sass --no-indented --style=compressed --embed-source-map src/scss:public/css",
+        "scss:watch": "sass --watch --no-indented --embed-source-map src/scss:public/css",
+        "scss:compile": "sass --no-indented --style=compressed --embed-source-map src/scss:public/css",
+        "assets:watch": "npx copy-and-watch --watch 'src/**/*.{html,json}' 'src/assets/**/*.{fonts,webp}/*' 'public/'",
+        "assets:copy-changes": "npx copy-and-watch \"src/**/*.{html,json}\" \"src/assets/**/*.{fonts,webp}/*\" \"public/\"",
         "assets:generate-pictures": "echo Todo: not yet implemented",
-        "assets:copy-changes": "npx copy-and-watch 'src/**/*.{html,json}' 'src/assets/**/{fonts,img}/*' public/",
-        "assets:watch": "npx copy-and-watch --watch 'src/**/*.{html,json}' 'src/assets/**/{fonts,img}/*' public/",
-        "js:minify": "terser src/js/main.js --compress --mangle --module --output=public/js/bundle.js",
+        "js:minify": "terser src/js/main.mjs -c -m --source-map --module -o public/js/bundle.js",
         "js:eslint": "npx eslint public/js/**",
-        "js:build": "npm run npm run js:lint && js:minify",
-        "browser:serve": "echo Todo: not yet implemented",
-        
-        "dev:watch": "npm run scss-watch & npm run assets:watch & npm run browser:serve",
-        "prod:build": "npm run scss-compile && npm run prod:js-build"
+        "js:build-single": "npm run js:eslint  &&  js:minify",
+        "browser:serve": "browser-sync start --server public --files public",
+        "dev:watch": "npm run scss-watch  &  npm run assets:watch  &  npm run browser:serve",
+        "prod:build": "npm run scss-compile  &&  npm run prod:js-build"
     }
 }
