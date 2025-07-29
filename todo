@@ -6,6 +6,7 @@ Implement asset:generate-pictures command
     
 Implement browser:serve command
     * download its dependency
+    
 --------
 
   
@@ -14,6 +15,8 @@ Read eslint documentation and review the js:eslint command.
 Read the Sass documentation about comments to learn about comments in .css output
 
 Read the Browser Sync documentation
+
+Read node's CLI & package[-lock].json documentation
 
 Research PostCSS, and possibly switch to it:
     It will provide CSS tree-shaking [?]
