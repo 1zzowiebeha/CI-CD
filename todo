@@ -1,11 +1,19 @@
+Fix the asset-* commands
+    * Use another library. Or maybe it's a problem with the glob pattern.
+
 Implement asset:generate-pictures command
-    Or just use Webpack
+    * Or just use Webpack
     
 Implement browser:serve command
-    
+    * download its dependency
+--------
+
+  
 Read eslint documentation and review the js:eslint command.
 
 Read the Sass documentation about comments to learn about comments in .css output
+
+Read the Browser Sync documentation
 
 Research PostCSS, and possibly switch to it:
     It will provide CSS tree-shaking [?]
@@ -13,10 +21,10 @@ Research PostCSS, and possibly switch to it:
     It offers native linting [?]
 
 Use WebPack or Vite:
-    * It will let us use something like copy-webpack-plugin
-        .. to migrate away from the abandoned `copy-and-watch` plugin.
-    * It will give us JS tree-shaking powers.
-    * It will let us run terser recursively instead of on one file
+    ⭐ * It will let us use something like copy-webpack-plugin
+        .. to migrate away from the abandoned `copy-and-watch` and related asset copy/watch plugins.
+    * It will give us JS tree-shaking powers. (why choose this over Rollup [?])
+    ⭐ * It will let us run terser recursively instead of on one file
         ^ (can't use terser-folder since it is abandoned).
     * It will let us generate downscaled DPI images (and replace them in the HTML [?]).
     
@@ -27,3 +35,5 @@ Fix current lack of terser variable substitution & deletion
         if a const is defined and used only once.
         in that case, the declaration should be removed and its value plugged into where it is used.
     )
+    
+    Welp. It looks like it resolved itself. Which flag did it?
