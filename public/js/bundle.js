@@ -1,0 +1,1 @@
+import o from"./modules/m.mjs";console.log(o);console.log("hey");

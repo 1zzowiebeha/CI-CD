@@ -1,0 +1,18 @@
+Switch from SCSS to PostCSS:
+    It will provide CSS tree-shaking
+    It offers experimental feature polyfills?
+    It offers native linting
+    
+Remove all comments from CSS output, even /* */
+
+asset:generate-pictures
+    Or just use Webpack
+
+Use WebPack or Vite:
+    * It will give us JS tree-shaking powers.
+    * It will let us run terser recursively instead of on one file.
+    * It will let us generate downscaled DPI images (and replace them in the HTML?).
+    
+Understand what strict mode is in regards to terser
+
+Fix current lack of terser variable substitution & deletion (ex. if a const is defined and used once. the declaration should be removed and its value plugged into where it is used.)
