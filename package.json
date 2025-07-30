@@ -1,10 +1,17 @@
 {
     "type": "module",
     "dependencies": {
+        "browser-sync": "^3.0.4",
         "copyfiles": "^2.4.1",
         "eslint": "^9.32.0",
         "sass-embedded": "^1.89.2",
         "terser": "^5.43.1"
+    },
+    "//config": {
+        "index.html": "Index file to serve first when browser:serve is used to open a hot-refreshing local server."  
+    },
+    "config": {
+      "index.html": "index5.html"  
     },
     "//scripts": {
         "scss-*": "Will embed source maps into the .css file to avoid a Sass source map removal detection bug. Commands fail if .sass files are used.",
@@ -25,7 +32,8 @@
         "js:minify": "terser src/js/main.mjs -c -m --source-map --module -o public/js/bundle.js",
         "js:eslint": "npx eslint public/js/**",
         "js:build-single": "npm run js:eslint  &&  js:minify",
-        "browser:serve": "browser-sync start --server public --files public",
+        "browser:serve:win": "browser-sync start --open %node_package_config_index.html% --server public/ --files public/",
+        "browser:serve:unix": "browser-sync start --open $node_package_config_index.html --server public/ --files public/",
         "dev:watch": "npm run scss-watch  &  npm run assets:watch  &  npm run browser:serve",
         "prod:build": "npm run scss-compile  &&  npm run prod:js-build"
     }
