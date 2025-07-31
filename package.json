@@ -2,16 +2,18 @@
     "type": "module",
     "dependencies": {
         "browser-sync": "^3.0.4",
+        "concurrently": "^9.2.0",
         "copyfiles": "^2.4.1",
         "eslint": "^9.32.0",
+        "onchange": "^7.1.0",
         "sass-embedded": "^1.89.2",
         "terser": "^5.43.1"
     },
     "//config": {
-        "index.html": "Index file to serve first when browser:serve is used to open a hot-refreshing local server."  
+        "index.html": "Index file to serve first when browser:serve is used to open a hot-refreshing local server."
     },
     "config": {
-      "index.html": "index5.html"  
+        "index.html": "index.html"
     },
     "//scripts": {
         "scss-*": "Will embed source maps into the .css file to avoid a Sass source map removal detection bug. Commands fail if .sass files are used.",
@@ -24,17 +26,23 @@
         "js:build-single": "Lint, minify, and generate source maps for a single JS file."
     },
     "scripts": {
-        "scss:watch": "sass --watch --no-indented --embed-source-map src/scss:public/css",
         "scss:compile": "sass --no-indented --style=compressed --embed-source-map src/scss:public/css",
-        "assets:copy-changes": "copyfiles \"src/assets/**/\" \"public/assets/\"",
-        "assets:watch": "onchange \"src/*.html\" -- npm run assets:copy-changes",
+        "watch:scss": "sass --watch --no-indented --embed-source-map src/scss:public/css",
+        "assets:copy-images": "copyfiles -f \"src/assets/img/**\" \"public/assets/img/\"",
+        "assets:copy-fonts": "copyfiles -f \"src/assets/fonts/**\" \"public/assets/fonts/\"",
+        "assets:copy-svg": "copyfiles -f \"src/assets/svg/**\" \"public/assets/svg/\"",
+        "assets:copy-data": "copyfiles -f \"src/assets/data/**/*\" \"public/data/\"",
+        "assets:copy-html": "copyfiles -f \"src/**/*.html\" \"public/\"",
+        "assets:copy-*": "npm run assets:copy-images  &  npm run assets:copy-fonts  &  npm run assets:copy-svg  &  npm run assets:copy-data  &  npm run assets:copy-html",
+        "watch:assets": "onchange \"src/assets/**/*\" -- npm run assets:copy-*",
         "assets:generate-pictures": "echo Todo: not yet implemented",
         "js:minify": "terser src/js/main.mjs -c -m --source-map --module -o public/js/bundle.js",
         "js:eslint": "eslint public/js/**",
         "js:build-single": "npm run js:eslint  &&  js:minify",
         "browser:serve:win": "browser-sync start --open %node_package_config_index.html% --server public/ --files public/",
         "browser:serve:unix": "browser-sync start --open $node_package_config_index.html --server public/ --files public/",
-        "dev:watch": "npm run scss-watch  &  npm run assets:watch  &  npm run browser:serve",
-        "prod:build": "npm run scss-compile  &&  npm run prod:js-build"
+        "dev:watch:win": "npm run watch:scss  &  npm run watch:assets  &  npm run browser:serve:win",
+        "dev:watch:unix": "npm run watch:scss  &  npm run watch:assets  &  npm run browser:serve:unix",
+        "prod:build": "npm run scss:compile  &&  npm run js:build-single"
     }
 }
