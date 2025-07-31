@@ -1,13 +1,16 @@
 # Actionable
 
-Fix the `asset-*` commands.
-    * Use another library. Or maybe it's a problem with the glob pattern.
+✅ Fix the `asset-*` commands.
 
 Implement the `asset:generate-pictures` command.
     * Or just use Webpack
     
 ✅ Implement `browser:serve` command.
     * Download its dependency
+    
+Fix concurrent issue with browser-sync and sass watch
+
+Move to Webpack for its wonderous benefits
     
 --------
 
