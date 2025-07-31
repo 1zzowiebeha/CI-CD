@@ -1,4 +1,4 @@
-# CI/CD scripts
+# CI/CD NPM scripts
 
 The beginnings of a personal build toolkit and CI/CD pipeline to develop front-end code with.
 
