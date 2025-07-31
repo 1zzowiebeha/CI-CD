@@ -1,23 +1,23 @@
 # Actionable
+------------
 
 ✅ Fix the `asset-*` commands.
-
-Implement the `asset:generate-pictures` command.
-    * Or just use Webpack
     
 ✅ Implement `browser:serve` command.
     * Download its dependency
     
-Fix concurrent issue with browser-sync and sass watch
+✅ Fix concurrent issue with browser-sync and sass watch
 
-Move to Webpack for its wonderous benefits
-
-Fix ESLint/minifier erroneous output (missing semi-colon)
-    
---------
+1. Read the concurrently docs
+2. Fix ESLint/minifier erroneous output (missing semi-colon)
+3. Implement the `asset:generate-pictures` command.
+        * Or just use Webpack
+4. Final pass for all the scripts.
+5. Learn about andmove to Webpack for its wonderous benefits
 
 # Research
-  
+----------
+
 Read eslint documentation and review the `js:eslint` command.
 
 Read the Sass documentation about comments to learn about comments in .css output.
@@ -30,6 +30,13 @@ Research PostCSS, and possibly switch to it:
     It will provide CSS tree-shaking [?]
     It offers experimental feature polyfills [?] (are there caveats?)
     It offers native linting [?]
+    
+Why does the background operator not work on Windows nor Unix?:
+    ex. "npm run browser:serve:win  &  npm run watch:scss  &  npm run watch:assets"
+    Very odd problem. Requires OS knowledge of Linux / & / daemons / shell / spawning
+    
+Concurrently will not work unless `npm:<script_name>` is used in place of `npm run <script_name>`.
+    Is this a bug?
 
 Use WebPack or Vite:
     ⭐ * It will let us use something like `copy-webpack-plugin`
@@ -53,3 +60,11 @@ Fix current lack of terser variable substitution & deletion.
     )
     
     * Welp. It looks like it resolved itself. Which flag did it?
+    
+# Interesting stack consideration:
+
+browser-sync live reload
+webpack src static asset update copy/remove/update to public dir / dpi downscaled image generation
+postcss modularity / polyfills / minification / mangling + stylelint
+    (better support compared to scss?)
+babel polyfills + typescript types + eslint + webpack minification / multi-file typescript compilation / treeshaking  
