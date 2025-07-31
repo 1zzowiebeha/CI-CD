@@ -11,6 +11,8 @@ Implement the `asset:generate-pictures` command.
 Fix concurrent issue with browser-sync and sass watch
 
 Move to Webpack for its wonderous benefits
+
+Fix ESLint/minifier erroneous output (missing semi-colon)
     
 --------
 
