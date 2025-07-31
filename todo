@@ -29,6 +29,11 @@ Research PostCSS, and possibly switch to it:
 Use WebPack or Vite:
     ⭐ * It will let us use something like `copy-webpack-plugin`
         .. to migrate away from the abandoned `copyfiles` + `onchange` packages, and related asset copy/watch plugins.
+        These plugins are very limited, for example the inability to copy descendant dir structure and not include the parent dir structure. So we are limited to a flat file structure with our output.
+        (this could be my lack of globbing knowledge.)
+        (with "src/assets/\*\*/\*" as an input path, the input path's root structure is copied (src/assets/\*\*/\*) instead of input dir's descendants (assets/\*\*/\*)).
+    * Also the plugins mentioned above don't track file deletions :(
+    * Concurrent sass watch + browser-sync doesn't work with background operator. (why?) concurrently needed?
     * It will give us JS tree-shaking powers. (why choose this over Rollup [?])
     ⭐ * It will let us run terser recursively instead of on one file
         ^ (can't use terser-folder since it is abandoned).
