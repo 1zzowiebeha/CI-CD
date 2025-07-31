@@ -41,8 +41,8 @@
         "js:build-single": "npm run js:eslint  &&  js:minify",
         "browser:serve:win": "browser-sync start --open %node_package_config_index.html% --server public/ --files public/",
         "browser:serve:unix": "browser-sync start --open $node_package_config_index.html --server public/ --files public/",
-        "dev:watch:win": "npm run watch:scss  &  npm run watch:assets  &  npm run browser:serve:win",
-        "dev:watch:unix": "npm run watch:scss  &  npm run watch:assets  &  npm run browser:serve:unix",
+        "dev:watch:win": "conc -c gray,red,magenta --group --names browser-sync,sass-watch,asset-watch 'npm:browser:serve:win' 'npm:watch:scss' 'npm:watch:assets'",
+        "dev:watch:unix": "conc -c gray,red,magenta --group --names browser-sync,sass-watch,asset-watch 'npm:browser:serve:unix' 'npm:watch:scss' 'npm:watch:assets'",
         "prod:build": "npm run scss:compile  &&  npm run js:build-single"
     }
 }
