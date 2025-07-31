@@ -6,7 +6,7 @@ Fix the `asset-*` commands.
 Implement the `asset:generate-pictures` command.
     * Or just use Webpack
     
-Implement `browser:serve` command.
+✅ Implement `browser:serve` command.
     * Download its dependency
     
 --------
@@ -28,7 +28,7 @@ Research PostCSS, and possibly switch to it:
 
 Use WebPack or Vite:
     ⭐ * It will let us use something like `copy-webpack-plugin`
-        .. to migrate away from the abandoned `copy-and-watch` and related asset copy/watch plugins.
+        .. to migrate away from the abandoned `copyfiles` + `onchange` packages, and related asset copy/watch plugins.
     * It will give us JS tree-shaking powers. (why choose this over Rollup [?])
     ⭐ * It will let us run terser recursively instead of on one file
         ^ (can't use terser-folder since it is abandoned).
