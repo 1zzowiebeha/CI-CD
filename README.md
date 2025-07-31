@@ -1,8 +1,8 @@
 # CI/CD scripts
 
-The beginnings of a personal CI/CD pipeline to develop front-end code with.
+The beginnings of a personal build toolkit and CI/CD pipeline to develop front-end code with.
 
-This will be deployed via GitHub Actions.
+This pipeline will use GitHub Actions.
 
 ## Roadmap
 
